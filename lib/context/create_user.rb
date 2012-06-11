@@ -14,7 +14,7 @@ module MyKissList
         user.password = params['password']
         user.extend(UnregisteredUser).register
 
-        {:status => :success, :user => @user}
+        {:user => @user}
       end
 
       protected

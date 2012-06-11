@@ -12,9 +12,7 @@ module MyKissList
 
         user.email = params['email']
         user.password = params['password']
-        user.extend(UnregisteredUser).register
-
-        {:user => @user}
+        {:user => user.extend(UnregisteredUser).register}
       end
 
       protected

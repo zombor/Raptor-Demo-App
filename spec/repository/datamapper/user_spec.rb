@@ -37,4 +37,9 @@ describe Repository::User do
     Repository::User::User.should_receive(:all)
     subject.all
   end
+
+  it 'returns nil when not found' do
+    user = subject.find_by_id(10000)
+    user.should be_nil
+  end
 end

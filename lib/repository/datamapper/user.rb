@@ -25,6 +25,7 @@ module Repository
     protected
 
     def self.convert_model(model)
+      return model if model.nil?
       MyKissList::Records::User.new(:id => model.id, :email => model.email, :password => model.password)
     end
 

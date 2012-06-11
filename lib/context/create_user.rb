@@ -1,3 +1,5 @@
+require 'error/validation'
+
 module MyKissList
   module Context
     class CreateUser
@@ -22,16 +24,6 @@ module MyKissList
           Arden::Repository.for(:user).create(self)
         end
       end
-    end
-  end
-end
-
-module Error
-  class Validation < Exception
-    attr_reader :errors
-
-    def initialize(errors)
-      @errors = errors
     end
   end
 end

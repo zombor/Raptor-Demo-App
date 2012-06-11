@@ -25,6 +25,14 @@ describe Repository::User do
     user.password.should == 'foobar'
   end
 
+  it 'finds by email' do
+    user = subject.find_by_email('foo@bar.com')
+
+    user.class.should == MyKissList::Records::User
+    user.email.should == 'foo@bar.com'
+    user.password.should == 'foobar'
+  end
+
   it 'returns all users' do
     Repository::User::User.should_receive(:all)
     subject.all

@@ -14,6 +14,10 @@ module Repository
       self.convert_model(User.get(id))
     end
 
+    def self.find_by_email(email)
+      self.convert_model(User.first(:email => email))
+    end
+
     def self.all
       User.all
     end

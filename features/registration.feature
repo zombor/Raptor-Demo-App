@@ -12,14 +12,14 @@ Feature: Registration
       | gender     | M           |
     Then I should have a valid user account
 
-  Scenario Outline: User submits invalid data for registration
+  Scenario: User submits missing data for registration
     Given I am an unregistered user
     When I submit the following values for registration:
-      | email    | <email>    |
-      | password | <password> |
-    Then I should see a registration error for <error-type>
-
-    Examples:
-      | email       | password | error-type |
-      | foo@bar.com |          | password   |
-      |             | foobar   | email      |
+      | username   |  |
+      | email      |  |
+      | password   |  |
+      | first_name |  |
+      | last_name  |  |
+      | dob        |  |
+      | gender     |  |
+    Then I should see required registration errors for each field

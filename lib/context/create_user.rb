@@ -1,24 +1,20 @@
 require 'error/validation'
+require 'models/user'
+require 'delegate'
+require 'dci'
 
 module MyKissList
   module Context
-    class CreateUser
-      def self.execute(user, params)
-        if params['email'].empty? || params['password'].empty?
-          raise Error::Validation.new(
-            {:email => params['email'].empty?, :password => params['password'].empty?}
-          )
-        end
+    class CreateUser < DCI::Context
 
-        user.email = params['email']
-        user.password = params['password']
-        {:user => user.extend(UnregisteredUser).register}
+      entry :execute do |user, params|
+        self.UnregisteredUser = user
+        UnregisteredUser.register(params)
       end
 
-      protected
-
-      module UnregisteredUser
-        def register
+      role :UnregisteredUser do
+        def register(params)
+          self.attributes = params
           Arden::Repository.for(:user).create(self)
         end
       end

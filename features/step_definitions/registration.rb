@@ -10,7 +10,7 @@ When /^I submit the following values for registration:$/ do |table|
   end
 
   begin
-    @result = MyKissList::Context::CreateUser.execute(
+    @result = MyKissList::Context::CreateUser.new.execute(
       MyKissList::Records::User.new,
       @params
     )
@@ -20,11 +20,15 @@ When /^I submit the following values for registration:$/ do |table|
 end
 
 Then /^I should have a valid user account$/ do
+  puts @exception.errors[:username].inspect
   @result[:user].should be_a(MyKissList::Records::User)
   @result[:user].email.should == @params['email']
   @result[:user].password.should == @params['password']
 end
 
-Then /^I should see a registration error for (.+)$/ do |field|
-  @exception.errors[field.to_sym].should be_true
+Then /^I should see required registration errors for each field$/ do
+  puts @exception.errors.inspect
+  @params.each do |key, value|
+    @exception.errors[key.to_sym].should_not be_empty
+  end
 end

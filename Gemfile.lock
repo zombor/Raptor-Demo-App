@@ -6,6 +6,12 @@ GIT
       datamapper (= 1.2.0)
       dm-sqlite-adapter (= 1.2.0)
 
+GIT
+  remote: https://github.com/zombor/ruby-dci.git
+  revision: dc139ab8bd9d78001157ef2b5992d68a50cda36b
+  specs:
+    bandy-dci (0.0.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -93,6 +99,7 @@ PLATFORMS
 DEPENDENCIES
   aequitas
   arden!
+  bandy-dci!
   cucumber
   datamapper
   dm-sqlite-adapter

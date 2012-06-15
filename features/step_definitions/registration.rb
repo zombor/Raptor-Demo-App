@@ -10,7 +10,7 @@ When /^I submit the following values for registration:$/ do |table|
   end
 
   begin
-    @result = MyKissList::Context::CreateUser.new.execute(
+    @result = MyKissList::Context::CreateUser.execute(
       MyKissList::Records::User.new,
       @params
     )

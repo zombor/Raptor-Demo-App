@@ -3,6 +3,7 @@ require 'context/create_user'
 require 'models/user'
 
 describe MyKissList::Context::CreateUser do
+  subject { MyKissList::Context::CreateUser }
   it 'creates a user' do
     post = {
       'username' => 'foobar',
